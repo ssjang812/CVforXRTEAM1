@@ -33,3 +33,14 @@ def build_button_list(keys_layout, start=(50, 50), gap=70):
             button_list.append(Button([x, y], key))
     return button_list
 
+
+def draw_all(img, button_list):
+    for button in button_list:
+        x, y = button.pos
+        w, h = button.size
+
+        cvzone.cornerRect(img, (x, y, w, h), 20, rt=0)
+        cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 255), cv2.FILLED)
+        cv2.putText(img, button.text, (x + 10, y + 45),
+                    cv2.FONT_HERSHEY_PLAIN, 2, (255, 255, 255), 2)
+    return img
